@@ -34,6 +34,10 @@ function start() {
 		print(timeToString(elapsedTime), "timer");
 	}, 10);
 	print("You have been holding D for:", "info");
+	const audio = document.querySelector("audio");
+
+	audio.volume = 1;
+	audio.play();
 }
 
 function sleep(milliseconds) {
@@ -47,6 +51,10 @@ function sleep(milliseconds) {
 function pause() {
 	clearInterval(timerInterval);
 	print("You gave up. What a loser!", "info");
+	const audio = document.querySelector("audio");
+	audio.volume = 1;
+	audio.pause();
+	audio.src = audio.src;
 }
 
 function reset() {
