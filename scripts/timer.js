@@ -19,6 +19,13 @@ function timeToString(time) {
 	return `${formattedHH}:${formattedMM}:${formattedSS}:${formattedMS}`;
 }
 
+function shuffle(array) {
+	for (let i = array.length - 1; i > 0; i--) {
+		let j = Math.floor(Math.random() * (i + 1));
+		[array[i], array[j]] = [array[j], array[i]];
+	}
+}
+
 let startTime;
 let elapsedTime = 0;
 let timerInterval;
@@ -34,10 +41,22 @@ function start() {
 		print(timeToString(elapsedTime), "timer");
 	}, 10);
 	print("You have been holding D for:", "info");
-	const audio = document.querySelector("audio");
-
-	audio.volume = 1;
-	audio.play();
+	var audioArray = document.getElementsByClassName("song");
+	var arr = [...audioArray];
+	console.log(arr);
+	shuffle(arr);
+	console.log(arr);
+	jQuery(document).ready(function () {
+		var i = 0;
+		arr[i].play();
+		for (i = 0; i < arr.length - 1; ++i) {
+			arr[i].addEventListener("ended", function (e) {
+				var currentSong = e.target;
+				var next = $(currentSong).nextAll("audio");
+				$(next[0] || arr[0]).trigger("play");
+			});
+		}
+	});
 }
 
 function sleep(milliseconds) {
@@ -51,10 +70,9 @@ function sleep(milliseconds) {
 function pause() {
 	clearInterval(timerInterval);
 	print("You gave up. What a loser!", "info");
-	const audio = document.querySelector("audio");
-	audio.volume = 1;
-	audio.pause();
-	audio.src = audio.src;
+	var sounds = document.getElementsByTagName("audio");
+	for (i = 0; i < sounds.length; i++)
+		sounds[i].pause(), (sounds[i].currentTime = 0);
 }
 
 function reset() {
@@ -63,41 +81,8 @@ function reset() {
 	elapsedTime = 0;
 }
 
-function getPrefix() {
-	if ("hidden" in document) {
-		return null;
-	}
-	var prefixes = ["moz", "ms", "o", "webkit"];
-
-	for (var i = 0; i < prefixes.length; i++) {
-		var testPrefix = prefixes[i] + "Hidden";
-		if (testPrefix in document) {
-			return prefixes[i];
-		}
-	}
-	return null;
-}
-
-function getVisibilityEvent(prefix) {
-	if (prefix) {
-		return prefix + "visibilitychange";
-	} else {
-		return "visibilitychange";
-	}
-}
-
-function getHiddenProperty(prefix) {
-	if (prefix) {
-		return prefix + "Hidden";
-	} else {
-		return "hidden";
-	}
-}
-
 window.onload = function () {
-	var prefix = getPrefix();
 	let Pressed = false;
-	var hidden = getHiddenProperty(prefix);
 	document.body.addEventListener("keydown", (event) => {
 		if (event.keyCode === 68 && !Pressed) {
 			reset();
@@ -113,8 +98,9 @@ window.onload = function () {
 			console.log("Done");
 		}
 	});
-	document.addEventListener(getVisibilityEvent(prefix), function () {
-		if (document[hidden]) {
+	document.addEventListener("visibilitychange", function (event) {
+		if (document.hidden) {
+			// The page is hidden.
 			pause();
 			print("LMAO u try so hard but u failure", "info");
 		}
