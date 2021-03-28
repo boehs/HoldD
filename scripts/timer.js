@@ -53,7 +53,7 @@ function start() {
 			arr[i].addEventListener("ended", function (e) {
 				var currentSong = e.target;
 				var next = $(currentSong).nextAll("audio");
-				$(next[0] || arr[0]).trigger("play");
+				if (next.length) $(next[0]).trigger("play");
 			});
 		}
 	});
