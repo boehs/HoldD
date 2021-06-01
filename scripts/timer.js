@@ -50,8 +50,8 @@ function start() {
 		for (i = 0; i < arr.length - 1; ++i) {
 			arr[i].addEventListener("ended", function (e) {
 				var currentSong = e.target;
-				var next = $(currentSong).nextAll("audio");
-				if (next.length) $(next[0]).trigger("play");
+				var next = document.querySelector(currentSong).nextAll("audio");
+				if (next.length) document.querySelector(next[0]).trigger("play");
 			});
 		}
 	};
