@@ -52,7 +52,7 @@ function start() {
 				var currentSong = e.target;
 				var next = $(currentSong).nextAll("audio");
 				if (next.length) $(next[0]).trigger("play");
-			});
+			};
 		}
 	});
 }
