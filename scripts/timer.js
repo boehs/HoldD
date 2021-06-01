@@ -43,9 +43,7 @@ function start() {
 	print("You have been holding D for:", "info");
 	var audioArray = document.getElementsByClassName("song");
 	var arr = [...audioArray];
-	console.log(arr);
 	shuffle(arr);
-	console.log(arr);
 	jQuery(document).ready(function () {
 		var i = 0;
 		arr[i].play();
@@ -88,19 +86,16 @@ window.onload = function () {
 			reset();
 			start();
 			Pressed = true;
-			console.log("Reset");
 		}
 	});
 	document.body.addEventListener("keyup", (event) => {
 		if (event.keyCode === 68 && Pressed) {
 			Pressed = false;
 			pause();
-			console.log("Done");
 		}
 	});
 	document.addEventListener("visibilitychange", function (event) {
 		if (document.hidden) {
-			// The page is hidden.
 			pause();
 			print("LMAO u try so hard but u failure", "info");
 		}
