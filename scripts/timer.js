@@ -44,7 +44,7 @@ function start() {
 	var audioArray = document.getElementsByClassName("song");
 	var arr = [...audioArray];
 	shuffle(arr);
-	jQuery(document).ready(function () {
+	window.onload = function () {
 		var i = 0;
 		arr[i].play();
 		for (i = 0; i < arr.length - 1; ++i) {
