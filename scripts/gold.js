@@ -78,7 +78,7 @@ class Confetti {
 
 let confetti = (__range__(1, NUM_CONFETTI, true).map((i) => new Confetti));
 
-stopped = false;
+stopped = true;
 window.step = function() {
   if (!stopped) {
   requestAnimationFrame(step);
