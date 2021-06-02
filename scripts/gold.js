@@ -1,4 +1,4 @@
-const NUM_CONFETTI = 350;
+let NUM_CONFETTI = 350;
 const COLORS = [[248,182,70], [248,182,70], [248,182,70], [248,182,70], [248,182,70]];
 const PI_2 = 2*Math.PI;
 
@@ -76,15 +76,19 @@ class Confetti {
 }
 
 
-const confetti = (__range__(1, NUM_CONFETTI, true).map((i) => new Confetti));
+let confetti = (__range__(1, NUM_CONFETTI, true).map((i) => new Confetti));
 
+stopped = false;
 window.step = function() {
+  if (!stopped) {
   requestAnimationFrame(step);
   context.clearRect(0,0,w,h);
   return Array.from(confetti).map((c) => c.draw());
+  };
 };
 
 step();
+
 function __range__(left, right, inclusive) {
   let range = [];
   let ascending = left < right;
@@ -93,4 +97,10 @@ function __range__(left, right, inclusive) {
     range.push(i);
   }
   return range;
+}
+
+function update(n) {
+  stopped = true;
+  confetti = (__range__(1, n, true).map((i) => new Confetti));
+  stopped = false;
 }
