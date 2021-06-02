@@ -35,6 +35,7 @@ function print(txt, id) {
 }
 
 function start() {
+	update(175);
 	startTime = Date.now() - elapsedTime;
 	timerInterval = setInterval(function printTime() {
 		elapsedTime = Date.now() - startTime;
@@ -66,6 +67,7 @@ function sleep(milliseconds) {
 }
 
 function pause() {
+	update(50);
 	clearInterval(timerInterval);
 	print("You gave up. What a loser!", "info");
 	var sounds = document.getElementsByTagName("audio");
@@ -81,6 +83,7 @@ function reset() {
 
 window.onload = function () {
 	let Pressed = false;
+	update(50);
 	document.body.addEventListener("keydown", (event) => {
 		if (event.keyCode === 68 && !Pressed) {
 			reset();
