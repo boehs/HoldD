@@ -6,7 +6,6 @@
   <title>HOLD D</title>
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="stylesheets/themes/rams.css">
-  <script src='scripts/timer.js'></script>
 
   <meta property="og:title" content="Hold D" />
   <meta property="og:type" content="website" />
@@ -19,8 +18,16 @@
 
 <body>
   <canvas id="world" style="position:fixed; top:0;left:0;pointer-events: none"></canvas>
+
+  <div id="container">
+    <div id="info">To start, hold D</div>
+    <div id="stopwatch"><span id="timer">00:00:00:00</span></div>
+    <div id="label">Hours &#8226; Minutes &#8226; Seconds &#8226; Milliseconds</div>
+  </div>
+
   <script src='scripts/gold.js'></script>
-  
+  <script src='scripts/timer.js'></script>
+
   <audio src="vibes/whatahero.mp3" class="song" id="song1"></audio>
   <audio src="vibes/dabuff.mp3" class="song" id="song2"></audio>
   <audio src="vibes/fuckit.mp3" class="song" id="song3"></audio>
@@ -28,12 +35,6 @@
   <audio src="vibes/ok.mp3" class="song" id="song5"></audio>
   <audio src="vibes/whitekidsthesedays.mp3" class="song" id="song6"></audio>
   <audio src="vibes/ihasdimonds.mp3" class="song" id="song7"></audio>
-
-  <div id="container">
-    <div id="info">To start, hold D</div>
-    <div id="stopwatch"><span id="timer">00:00:00:00</span></div>
-    <div id="label">Hours &#8226; Minutes &#8226; Seconds &#8226; Milliseconds</div>
-  </div>
 </body>
 
 </html>

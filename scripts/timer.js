@@ -81,26 +81,24 @@ function reset() {
 	elapsedTime = 0;
 }
 
-window.onload = function () {
-	let Pressed = false;
-	update(50);
-	document.body.addEventListener("keydown", (event) => {
-		if (event.keyCode === 68 && !Pressed) {
-			reset();
-			start();
-			Pressed = true;
-		}
-	});
-	document.body.addEventListener("keyup", (event) => {
-		if (event.keyCode === 68 && Pressed) {
-			Pressed = false;
-			pause();
-		}
-	});
-	document.addEventListener("visibilitychange", function (event) {
-		if (document.hidden) {
-			pause();
-			print("LMAO u try so hard but u failure", "info");
-		}
-	});
-};
+let Pressed = false;
+update(50);
+document.body.addEventListener("keydown", (event) => {
+	if (event.keyCode === 68 && !Pressed) {
+		reset();
+		start();
+		Pressed = true;
+	}
+});
+document.body.addEventListener("keyup", (event) => {
+	if (event.keyCode === 68 && Pressed) {
+		Pressed = false;
+		pause();
+	}
+});
+document.addEventListener("visibilitychange", function (event) {
+	if (document.hidden) {
+		pause();
+		print("LMAO u try so hard but u failure", "info");
+	}
+});
